@@ -6,6 +6,26 @@ body{
 
 input[type=text]{
     padding: .4em;
+    width: 150px;
+}
+
+input[id=title]{
+    margin-left: 6px;
+    width: 151px;
+}
+
+input[id=online]{
+    margin-left: 632px;
+}
+
+input[type=button]{
+    margin-left: 610px;
+    font-size: 25px;
+    width: 170px;
+}
+
+p[id=error]{
+    color: red;
 }
 
 label{
@@ -14,15 +34,17 @@ label{
     text-align: right;
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
+    color: white;
 }
 
-input[type=checkbox], input[type=button]{
-    margin-left: 40%;
+label[for="online"]{
+    margin-left: 0%;
 }
 
 .header{
     margin-top: 10px;
-    margin-left: 40%;
+    margin-left: 590px;
+    color: white;
 }
 
 #error{
