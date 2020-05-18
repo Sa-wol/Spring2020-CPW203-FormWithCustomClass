@@ -1,13 +1,28 @@
+body{
+    background-image: url(/img/gameAdd.jpg);
+    background-size: auto;
+}
+
 input[type=text]{
     padding: .4em;
 }
 
 label{
-    width:50%;
+    margin-left: 40%;
     display: inline-block;
     text-align: right;
+    padding: 10px;
 }
 
 input[type=checkbox], input[type=button]{
-    margin-left: 50%;
+    margin-left: 40%;
+}
+
+.header{
+    margin-top: 10px;
+    margin-left: 40%;
+}
+
+#error{
+    margin-left: 40%;
 }
