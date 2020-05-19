@@ -46,3 +46,13 @@ label[for="online"]{
 #error{
     margin-left: 40%;
 }
+
+#validation-summary{
+    margin-left: 38%;
+    color: #dc143c;
+}
+
+#display{
+    margin-left: 35%;
+    color: white;
+}

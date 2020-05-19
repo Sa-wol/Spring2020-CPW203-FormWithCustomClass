@@ -29,21 +29,26 @@ function isAllDataValid() {
     var title = getInputById("title").value;
     if (title == "") {
         isValid = false;
-        var errSummary = getById("validation-summary");
-        var errItem = document.createElement("li");
-        errItem.innerText = "Title is required!";
-        errSummary.appendChild(errItem);
+        addErrorMessage("Title is required");
     }
     var price = getInputById("price").value;
     var priceValue = parseFloat(price);
     if (price == "" || isNaN(priceValue)) {
         isValid = false;
-        var errSummary = getById("validation-summary");
-        var errItem = document.createElement("li");
-        errItem.innerText = "Price is required and must be a number";
-        errSummary.appendChild(errItem);
+        addErrorMessage("Price is required.");
+    }
+    var rating = getById("rating").value;
+    if (rating == "") {
+        isValid = false;
+        addErrorMessage("Please choose a game rating!");
     }
     return isValid;
+}
+function addErrorMessage(errMsg) {
+    var errSummary = getById("validation-summary");
+    var errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
 }
 function getVideoGame() {
     var game = new VideoGame();

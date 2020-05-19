@@ -1,3 +1,6 @@
+/**
+ * Video Game class
+ */
 class VideoGame{
     title:string;
     price:number;
@@ -10,11 +13,16 @@ window.onload = function(){
     addBtn.onclick = addVideoGame;
 }
 
-// shortcut to get ElementByID cast
+/**
+ * shortcut of HTMLInputElement cast
+ */
 function getInputById(id:string):HTMLInputElement{
     return <HTMLInputElement>document.getElementById(id);
 }
 
+/**
+ * shortcut of getElementById
+ */
 function getById(id:string){
     return document.getElementById(id);
 }
@@ -36,32 +44,39 @@ function addVideoGame(){
     }
 }
 
+/**
+ * Function checks for valid data
+ */
 function isAllDataValid(){
     let isValid = true;
 
     let title = getInputById("title").value;
     if(title == ""){
         isValid = false;
-        let errSummary = getById("validation-summary");
-        let errItem = document.createElement("li");
-        errItem.innerText = "Title is required!"
-
-        errSummary.appendChild(errItem);
+        addErrorMessage("Title is required");
     }
 
     let price = getInputById("price").value;
     let priceValue = parseFloat(price);
     if(price == "" || isNaN(priceValue)){
         isValid = false;
+        addErrorMessage("Price is required.");
+    }
 
-        let errSummary = getById("validation-summary");
-        let errItem = document.createElement("li");
-        errItem.innerText = "Price is required and must be a number";
-
-        errSummary.appendChild(errItem);
+    let rating = (<HTMLOptionElement>getById("rating")).value;
+    if(rating == ""){
+        isValid = false;
+        addErrorMessage("Please choose a game rating!");
     }
 
     return isValid;
+}
+
+function addErrorMessage(errMsg:string) {
+    let errSummary = getById("validation-summary");
+    let errItem = document.createElement("li");
+    errItem.innerText = errMsg;
+    errSummary.appendChild(errItem);
 }
 
 /**
@@ -94,6 +109,10 @@ function getVideoGame():VideoGame{
     return game;
 }
 
+/**
+ * Function displays game title when info
+ * is ssubmitted
+ */
 function displayGame(myGame:VideoGame):void{
     // TODO: Display video game below the form
     let displayDiv = getById("display");
