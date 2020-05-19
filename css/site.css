@@ -24,10 +24,6 @@ input[type=button]{
     width: 170px;
 }
 
-p[id=error]{
-    color: red;
-}
-
 label{
     margin-left: 40%;
     display: inline-block;

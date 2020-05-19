@@ -7,17 +7,43 @@ window.onload = function () {
     var addBtn = document.querySelector("input[type=button]");
     addBtn.onclick = addVideoGame;
 };
+function getInputById(id) {
+    return document.getElementById(id);
+}
 function getById(id) {
     return document.getElementById(id);
 }
+function clearAllErrors() {
+    var errSummary = getById("validation-summary");
+    errSummary.innerText = "";
+}
 function addVideoGame() {
+    clearAllErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
     }
 }
 function isAllDataValid() {
-    return true;
+    var isValid = true;
+    var title = getInputById("title").value;
+    if (title == "") {
+        isValid = false;
+        var errSummary = getById("validation-summary");
+        var errItem = document.createElement("li");
+        errItem.innerText = "Title is required!";
+        errSummary.appendChild(errItem);
+    }
+    var price = getInputById("price").value;
+    var priceValue = parseFloat(price);
+    if (price == "" || isNaN(priceValue)) {
+        isValid = false;
+        var errSummary = getById("validation-summary");
+        var errItem = document.createElement("li");
+        errItem.innerText = "Price is required and must be a number";
+        errSummary.appendChild(errItem);
+    }
+    return isValid;
 }
 function getVideoGame() {
     var game = new VideoGame();
@@ -42,14 +68,15 @@ function displayGame(myGame) {
     var gameHeading = document.createElement("h2");
     gameHeading.innerText = myGame.title;
     var gameInfo = document.createElement("p");
-    var gameMediumDisplay = "";
+    var notDigitalDisplay = "";
     if (myGame.isDigitalOnly) {
-        gameMediumDisplay = "Digital copy available online.";
+        notDigitalDisplay = "Digital copy available online.";
     }
     else {
-        gameMediumDisplay = "You can come buy a physical copy.";
+        notDigitalDisplay = "You can come buy a physical copy.";
     }
-    gameInfo.innerHTML = myGame.title + " has a rating of " + myGame.rating + ". \n                        It costs $" + myGame.price.toFixed(2) + ". " + gameMediumDisplay;
+    gameInfo.innerHTML = myGame.title + " has a rating of " + myGame.rating + ". " +
+        ("It costs $" + myGame.price + ". " + notDigitalDisplay);
     displayDiv.appendChild(gameHeading);
     displayDiv.appendChild(gameInfo);
 }

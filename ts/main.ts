@@ -5,24 +5,31 @@ class VideoGame{
     isDigitalOnly:boolean;
 }
 
-//test code
-/*
-let myGame = new VideoGame();
-myGame.title = "Mario";
-myGame.rating = "E";
-myGame.isDigitalOnly = true;
-*/
-
 window.onload = function(){
     let addBtn = <HTMLElement>document.querySelector("input[type=button]");
     addBtn.onclick = addVideoGame;
+}
+
+// shortcut to get ElementByID cast
+function getInputById(id:string):HTMLInputElement{
+    return <HTMLInputElement>document.getElementById(id);
 }
 
 function getById(id:string){
     return document.getElementById(id);
 }
 
+/**
+ * Clears all errors in the validation summary
+ */
+function clearAllErrors(){
+    let errSummary = getById("validation-summary");
+    errSummary.innerText = "";
+}
+
 function addVideoGame(){
+    clearAllErrors();
+
     if(isAllDataValid()){
         let game = getVideoGame();
         displayGame(game);
@@ -30,7 +37,31 @@ function addVideoGame(){
 }
 
 function isAllDataValid(){
-    return true;
+    let isValid = true;
+
+    let title = getInputById("title").value;
+    if(title == ""){
+        isValid = false;
+        let errSummary = getById("validation-summary");
+        let errItem = document.createElement("li");
+        errItem.innerText = "Title is required!"
+
+        errSummary.appendChild(errItem);
+    }
+
+    let price = getInputById("price").value;
+    let priceValue = parseFloat(price);
+    if(price == "" || isNaN(priceValue)){
+        isValid = false;
+
+        let errSummary = getById("validation-summary");
+        let errItem = document.createElement("li");
+        errItem.innerText = "Price is required and must be a number";
+
+        errSummary.appendChild(errItem);
+    }
+
+    return isValid;
 }
 
 /**
@@ -73,21 +104,21 @@ function displayGame(myGame:VideoGame):void{
 
     // create paragraph with game details
     let gameInfo = document.createElement("p");
-    let gameMediumDisplay = "";
+    let notDigitalDisplay = "";
     if(myGame.isDigitalOnly){
-        gameMediumDisplay = "Digital copy available online.";
+        notDigitalDisplay = "Digital copy available online.";
     }
     else{
-        gameMediumDisplay = "You can come buy a physical copy."
+        notDigitalDisplay = "You can come buy a physical copy."
     }
 
     // template literals
-    gameInfo.innerHTML = `${myGame.title} has a rating of ${myGame.rating}. 
-                        It costs $${myGame.price.toFixed(2)}. ${gameMediumDisplay}`;
+    gameInfo.innerHTML = `${myGame.title} has a rating of ${myGame.rating}. ` +
+                        `It costs $${myGame.price}. ${notDigitalDisplay}`;
 
     // add <h2> in the <dive id="dispolay">
     displayDiv.appendChild(gameHeading);
     
-    //Add <p> game info
+    // add <p> game info
     displayDiv.appendChild(gameInfo);
 }
