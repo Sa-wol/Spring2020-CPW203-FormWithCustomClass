@@ -1,6 +1,7 @@
 body{
     background-image: url(/img/gameBG.jpg);
     background-size: auto;
+    background-color: purple;
     font-family: 'Anton', sans-serif;
 }
 
