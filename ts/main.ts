@@ -60,7 +60,7 @@ function isAllDataValid(){
     let priceValue = parseFloat(price);
     if(price == "" || isNaN(priceValue)){
         isValid = false;
-        addErrorMessage("Price is required.");
+        addErrorMessage("Price is required. Enter numbers only.");
     }
 
     let rating = (<HTMLOptionElement>getById("rating")).value;

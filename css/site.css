@@ -1,5 +1,5 @@
 body{
-    background-image: url(/img/gameAdd.jpg);
+    background-image: url(/img/gameBG.jpg);
     background-size: auto;
     font-family: 'Anton', sans-serif;
 }
@@ -50,6 +50,7 @@ label[for="online"]{
 #validation-summary{
     margin-left: 38%;
     color: #dc143c;
+    list-style-type: square;
 }
 
 #display{

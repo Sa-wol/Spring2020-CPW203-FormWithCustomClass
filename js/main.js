@@ -35,7 +35,7 @@ function isAllDataValid() {
     var priceValue = parseFloat(price);
     if (price == "" || isNaN(priceValue)) {
         isValid = false;
-        addErrorMessage("Price is required.");
+        addErrorMessage("Price is required. Enter numbers only.");
     }
     var rating = getById("rating").value;
     if (rating == "") {
