@@ -38,4 +38,18 @@ function getVideoGame() {
     return game;
 }
 function displayGame(myGame) {
+    var displayDiv = getById("display");
+    var gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+    var gameInfo = document.createElement("p");
+    var gameMediumDisplay = "";
+    if (myGame.isDigitalOnly) {
+        gameMediumDisplay = "Digital copy available online.";
+    }
+    else {
+        gameMediumDisplay = "You can come buy a physical copy.";
+    }
+    gameInfo.innerHTML = myGame.title + " has a rating of " + myGame.rating + ". \n                        It costs $" + myGame.price.toFixed(2) + ". " + gameMediumDisplay;
+    displayDiv.appendChild(gameHeading);
+    displayDiv.appendChild(gameInfo);
 }
